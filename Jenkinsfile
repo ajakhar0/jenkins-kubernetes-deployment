@@ -32,7 +32,11 @@ pipeline {
     }
 
     stage('Deploying React.js container to Kubernetes') {
-            kubernetesDeploy configs: "deployment.yaml" , kubeconfigId: "k8sconfigpwd" 
+      steps {
+        script {
+          kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "k8sconfigpwd")
+        }
+      }   
     }
 
   }
