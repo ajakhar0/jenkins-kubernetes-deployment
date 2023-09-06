@@ -33,9 +33,9 @@ pipeline {
 
     stage('Deploying React.js container to Kubernetes') {
       steps {
-        steps {
+        
             sh 'envsubst < ${WORKSPACE}/deployment.yaml | kubectl apply -f -'
-          }
+          
       }   
     }
 
