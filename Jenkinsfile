@@ -3,6 +3,7 @@ pipeline {
   environment {
     dockerimagename = "amanjakharaptos/react-app"
     dockerImage = ""
+    KUBECONFIG = credentials('test-minikube')
   }
 
   agent any
@@ -38,7 +39,7 @@ pipeline {
                     sh 'minikube start'
                     
                     // Set the Minikube context
-                    sh 'kubectl config use-context minikube'
+                    sh 'kubectl --kubeconfig=$KUBECONFIG'
                     
                     // Fetch your deployment file from the GitHub repository
                     sh "curl -o deployment.yaml https://github.com/ajakhar0/jenkins-kubernetes-deployment/raw/main/deployment.yaml"
